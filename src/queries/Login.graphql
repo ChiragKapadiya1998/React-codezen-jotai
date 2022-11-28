@@ -1,0 +1,21 @@
+mutation Mutation($loginUserInput: LoginUserInput!) {
+  login(loginUserInput: $loginUserInput) {
+    prefix
+    mobileNo
+    deviceOS
+    deviceType
+    countryCode
+    country
+    _id
+    otp
+  }
+}
+mutation VerifyOtpMutation($verifyOtpInput: VerifyOtpInput!) {
+  verifyOtp(verifyOtpInput: $verifyOtpInput) {
+    userId
+    accessToken
+    _id
+    loggedIn
+    createdAt
+  }
+}

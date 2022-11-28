@@ -1,0 +1,442 @@
+input BodyShapeInput {
+  ankle: Float!
+  arms: Float!
+  belly: Float!
+  breast: Float!
+  breastImportance: String
+  butt: Float!
+  calf: Float!
+  height: Float!
+  hip: Float!
+  knees: Float!
+  legs: Float!
+  neck: Float!
+  neckImportance: String
+  shoulders: Float!
+  waist: Float!
+}
+
+type BodyShapeModel {
+  _id: ID!
+  ankle: Float!
+  arms: Float!
+  belly: Float!
+  breast: Float!
+  breastImportance: String
+  butt: Float!
+  calf: Float!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  height: Float!
+  hip: Float!
+  knees: Float!
+  legs: Float!
+  neck: Float!
+  neckImportance: String
+  shoulders: Float!
+  updatedAt: DateTime!
+  userId: String!
+  waist: Float!
+}
+
+type BrandModel {
+  _id: ID!
+  brandName: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  imageUrl: String!
+  updatedAt: DateTime!
+}
+
+type BrandPagination {
+  data: [BrandModel!]!
+  meta: PageMetaDto!
+}
+
+type CategoryModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  subCategory: SubCategoryPageModel!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type CategoryPagination {
+  data: [CategoryModel!]!
+  meta: PageMetaDto!
+}
+
+type ClothPatternModel {
+  _id: ID!
+  clothName: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  imageUrl: String!
+  updatedAt: DateTime!
+}
+
+type ClothPatternPagination {
+  data: [ClothPatternModel!]!
+  meta: PageMetaDto!
+}
+
+type ColorPaletteModel {
+  _id: ID!
+  colorName: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  imageUrl: String!
+  updatedAt: DateTime!
+}
+
+type ColorPalettePagination {
+  data: [ColorPaletteModel!]!
+  meta: PageMetaDto!
+}
+
+input CreateCategoryInput {
+  title: String!
+}
+
+input CreateDataPrivacyInput {
+  name: String!
+}
+
+input CreateSeasonInput {
+  name: String!
+}
+
+input CreateSubCategoryInput {
+  categoryId: String!
+  subTitle: String!
+}
+
+type DataPrivacyModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type DataPrivacyPagination {
+  data: [DataPrivacyModel!]!
+  meta: PageMetaDto!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DressCodeModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  dressTitle: String!
+  imageUrl: String!
+  updatedAt: DateTime!
+}
+
+type DressCodePagination {
+  data: [DressCodeModel!]!
+  meta: PageMetaDto!
+}
+
+type EyeColorModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  eyeColorName: String!
+  imageUrl: String!
+  updatedAt: DateTime!
+}
+
+type EyeColorPagination {
+  data: [EyeColorModel!]!
+  meta: PageMetaDto!
+}
+
+type HairColorModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  hairColorName: String!
+  imageUrl: String!
+  updatedAt: DateTime!
+}
+
+type HairColorPagination {
+  data: [HairColorModel!]!
+  meta: PageMetaDto!
+}
+
+input LoginUserInput {
+  countryCode: String!
+  deviceOS: String!
+  deviceToken: String!
+  deviceType: String!
+  deviceVersion: String!
+  mobileNo: String!
+  prefix: String!
+  termsCondition: Boolean = true
+}
+
+type Mutation {
+  createBrand(image: Upload!, name: String!): BrandModel!
+  createCategory(createCategoryInput: CreateCategoryInput!): CategoryModel!
+  createClothPattern(image: Upload!, name: String!): ClothPatternModel!
+  createColorPalette(image: Upload!, name: String!): ColorPaletteModel!
+  createDataPrivacy(createDataPrivacyInput: CreateDataPrivacyInput!): DataPrivacyModel!
+  createDressCode(image: Upload!, name: String!): DressCodeModel!
+  createEyeColor(image: Upload!, name: String!): EyeColorModel!
+  createHairColor(image: Upload!, name: String!): HairColorModel!
+  createSeason(createSeasonInput: CreateSeasonInput!): SeasonModel!
+  createSkinColor(image: Upload!, name: String!): SkinColorModel!
+  createStyle(image: Upload!, name: String!): StyleModel!
+  createSubCategory(createSubCategoryInput: CreateSubCategoryInput!): SubCategoryModel!
+  login(loginUserInput: LoginUserInput!): UserModel!
+  logout: Boolean!
+  refreshToken: SessionModel!
+  removeBrand(id: String!): BrandModel!
+  removeCategory(id: String!): CategoryModel!
+  removeClothPattern(id: String!): ClothPatternModel!
+  removeColorPalette(id: String!): ColorPaletteModel!
+  removeDataPrivacy(id: String!): DataPrivacyModel!
+  removeDressCode(id: String!): DressCodeModel!
+  removeEyeColor(id: String!): EyeColorModel!
+  removeHairColor(id: String!): HairColorModel!
+  removeSeason(id: String!): SeasonModel!
+  removeSkinColor(id: String!): SkinColorModel!
+  removeStyle(id: String!): StyleModel!
+  removeSubCategory(id: String!): SubCategoryModel!
+  updateBodyShape(bodyShapeInput: BodyShapeInput!, id: String!): BodyShapeModel!
+  updateBrand(id: String!, image: Upload!, name: String!): BrandModel!
+  updateCategory(id: String!, updateCategoryInput: UpdateCategoryInput!): CategoryModel!
+  updateClothPattern(id: String!, image: Upload!, name: String!): ClothPatternModel!
+  updateColorPalette(id: String!, image: Upload!, name: String!): ColorPaletteModel!
+  updateDataPrivacy(id: String!, updateDataPrivacyInput: UpdateDataPrivacyInput!): DataPrivacyModel!
+  updateDressCode(id: String!, image: Upload!, name: String!): DressCodeModel!
+  updateEyeColor(id: String!, image: Upload!, name: String!): EyeColorModel!
+  updateHairColor(id: String!, image: Upload!, name: String!): HairColorModel!
+  updateProfile(id: String!, image: Upload!): UserModel!
+  updateSeason(id: String!, updateSeasonInput: UpdateSeasonInput!): SeasonModel!
+  updateSkinColor(id: String!, image: Upload!, name: String!): SkinColorModel!
+  updateStyle(id: String!, image: Upload!, name: String!): StyleModel!
+  updateSubCategory(id: String!, updateSubCategoryInput: UpdateSubCategoryInput!): SubCategoryModel!
+  updateUserDetails(id: String!, updateUserInput: UpdateUserInput!): UserModel!
+  verifyOtp(verifyOtpInput: VerifyOtpInput!): SessionModel!
+}
+
+type PageMetaDto {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  itemCount: Float!
+  limit: Float!
+  page: Float!
+  pageCount: Float!
+}
+
+input PageOptionsDto {
+  limit: Float = 10
+  order: String = "ASC"
+  page: Float = 1
+  skip: Float = 0
+}
+
+type Query {
+  getAllBrands(pageOptionsDto: PageOptionsDto!): BrandPagination!
+  getAllCategories(pageOptionsDto: PageOptionsDto!): CategoryPagination!
+  getAllClothPatterns(pageOptionsDto: PageOptionsDto!): ClothPatternPagination!
+  getAllColorPalettes(pageOptionsDto: PageOptionsDto!): ColorPalettePagination!
+  getAllDataPrivacy(pageOptionsDto: PageOptionsDto!): DataPrivacyPagination!
+  getAllDressCode(pageOptionsDto: PageOptionsDto!): DressCodePagination!
+  getAllEyeColors(pageOptionsDto: PageOptionsDto!): EyeColorPagination!
+  getAllHairColors(pageOptionsDto: PageOptionsDto!): HairColorPagination!
+  getAllSeason(pageOptionsDto: PageOptionsDto!): SeasonPagination!
+  getAllSkinColors(pageOptionsDto: PageOptionsDto!): SkinColorPagination!
+  getAllStyles(pageOptionsDto: PageOptionsDto!): StylePagination!
+  getAllSubCategories(pageOptionsDto: PageOptionsDto!): SubCategoryPagination!
+  getBrand(id: String!): BrandModel!
+  getCategory(id: String!): CategoryModel!
+  getClothPattern(id: String!): ClothPatternModel!
+  getColorPalette(id: String!): ColorPaletteModel!
+  getDataPrivacy(id: String!): DataPrivacyModel!
+  getDressCode(id: String!): DressCodeModel!
+  getEyeColor(id: String!): EyeColorModel!
+  getHairColor(id: String!): HairColorModel!
+  getSeason(id: String!): SeasonModel!
+  getSkinColor(id: String!): SkinColorModel!
+  getStyle(id: String!): StyleModel!
+  getSubCategory(id: String!): SubCategoryModel!
+}
+
+type SeasonModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type SeasonPagination {
+  data: [SeasonModel!]!
+  meta: PageMetaDto!
+}
+
+type SessionModel {
+  _id: ID!
+  accessToken: String
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  deviceOS: String!
+  deviceToken: String
+  deviceType: String!
+  deviceVersion: String!
+  loggedIn: DateTime!
+  refreshToken: String
+  updatedAt: DateTime!
+  userId: String!
+}
+
+type SkinColorModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  imageUrl: String!
+  skinColorName: String!
+  updatedAt: DateTime!
+}
+
+type SkinColorPagination {
+  data: [SkinColorModel!]!
+  meta: PageMetaDto!
+}
+
+type StyleModel {
+  _id: ID!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  imageUrl: String!
+  styleName: String!
+  updatedAt: DateTime!
+}
+
+type StylePagination {
+  data: [StyleModel!]!
+  meta: PageMetaDto!
+}
+
+type SubCategoryModel {
+  _id: ID!
+  category: CategoryModel!
+  categoryId: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  subTitle: String!
+  updatedAt: DateTime!
+}
+
+type SubCategoryPageModel {
+  data: [SubCategoryModel!]!
+  totalCount: Int!
+}
+
+type SubCategoryPagination {
+  data: [SubCategoryModel!]!
+  meta: PageMetaDto!
+}
+
+input UpdateCategoryInput {
+  title: String!
+}
+
+input UpdateDataPrivacyInput {
+  name: String!
+}
+
+input UpdateSeasonInput {
+  name: String!
+}
+
+input UpdateSubCategoryInput {
+  categoryId: String!
+  subTitle: String!
+}
+
+input UpdateUserInput {
+  address: String
+  allowlocation: Boolean
+  birthDate: DateTime
+  brandIds: [String!]
+  clothPatternIds: [String!]
+  colorPaletteIds: [String!]
+  country: String
+  dislikeStyleIds: [String!]
+  dressCodeId: String
+  eyeColorId: String
+  firstName: String
+  gender: String
+  hairColorId: String
+  jobTitle: String
+  lastName: String
+  lat: Float
+  likeStyleIds: [String!]
+  lng: Float
+  nationality: String
+  skinColorId: String
+  sustainability: String
+  weight: Float
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UserModel {
+  _id: ID!
+  address: String
+  allowlocation: Boolean
+  birthDate: DateTime
+  bodyShape: BodyShapeModel
+  brandIds: [String!]
+  clothPatternIds: [String!]
+  colorPaletteIds: [String!]
+  country: String
+  countryCode: String!
+  createdAt: DateTime!
+  deletedAt: DateTime!
+  deviceOS: String!
+  deviceToken: String!
+  deviceType: String!
+  deviceVersion: String!
+  dislikeStyleIds: [String!]
+  dressCodeId: String
+  eyeColorId: String
+  firstName: String
+  gender: String
+  hairColorId: String
+  jobTitle: String
+  lastName: String
+  lat: String
+  likeStyleIds: [String!]
+  lng: String
+  mobileNo: String!
+  nationality: String
+  otp: String!
+  otpTimeInterval: DateTime!
+  prefix: String!
+  profileImage: String
+  skinColorId: String
+  sustainability: String
+  termsCondition: Boolean!
+  updatedAt: DateTime!
+  weight: String
+}
+
+input VerifyOtpInput {
+  countryCode: String!
+  mobileNo: String!
+  otp: String!
+  prefix: String!
+}
